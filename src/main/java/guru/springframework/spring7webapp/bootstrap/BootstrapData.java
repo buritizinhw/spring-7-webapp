@@ -36,7 +36,6 @@ public class BootstrapData implements CommandLineRunner {
         Author clariceSaved = authorRepository.save(clarice);
         Book hdeSaved = bookRepository.save(hde);
 
-
         Author eduardo = new Author();
         eduardo.setFirstName("Eduardo");
         eduardo.setLastName("Guerra");
@@ -51,17 +50,26 @@ public class BootstrapData implements CommandLineRunner {
         clariceSaved.getBooks().add(hdeSaved);
         eduardoSaved.getBooks().add(dpjSaved);
 
-        Publisher editoraTeste = new Publisher();
-        editoraTeste.setPublisherName("Editora Rocco");
-        editoraTeste.setAddress("Rua dos bobos, 0");
-        editoraTeste.setCity("Campina Grande");
-        editoraTeste.setState("PB");
-        editoraTeste.setZip("12345678");
 
-        publisherRepository.save(editoraTeste);
+        Publisher publisher1 = new Publisher();
+        publisher1.setPublisherName("Editora Rocco");
+        publisher1.setAddress("Rua dos bobos, 0");
+        publisher1.setCity("Campina Grande");
+        publisher1.setState("PB");
+        publisher1.setZip("12345678");
+        Publisher publisher1Saved = publisherRepository.save(publisher1);
 
+        Publisher publisher2 = new Publisher();
+        publisher2.setPublisherName("Editora Intriseca");
+        Publisher publisher2Saved = publisherRepository.save(publisher2);
 
+        hdeSaved.setPublisher(publisher1Saved);
+        dpjSaved.setPublisher(publisher2Saved);
 
+        authorRepository.save(clariceSaved);
+        authorRepository.save(eduardoSaved);
+        bookRepository.save(hdeSaved);
+        bookRepository.save(dpjSaved);
 
         System.out.println("Bootstrap data here");
         System.out.println("Authors:"+ authorRepository.count());
