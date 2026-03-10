@@ -17,10 +17,7 @@ public class BookController {
     @RequestMapping(path = "/books")
     public String getBooks(Model model) {
         model.addAttribute("books", bookService.findAll());
-        //TODO implement view
         return "books" ;
     }
-    
-    
     
 }
